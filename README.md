@@ -1,0 +1,2 @@
+# letcode
+my mini solution 
