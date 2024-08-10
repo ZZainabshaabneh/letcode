@@ -1,0 +1,29 @@
+class Solution {
+    public int findLucky(int[] arr) {
+        int r = 0;
+        int count = 0;
+        int max = -1;
+       int[] news = new int[arr.length];
+        
+        for (int i = 0; i < arr.length; i++) {
+            r = arr[i];
+            count = 0; 
+            
+            for (int j = 0; j < arr.length; j++) {
+                if (r == arr[j]) {
+                    count++;
+                }
+                
+            }
+            if (count==r) news[i]=r;
+            
+        }
+        for(int i=0;i<news.length;i++){
+            if(news[i]>max && news[i]!=0){
+                max=news[i];
+            }
+        }
+        
+        return max;
+    }
+}
