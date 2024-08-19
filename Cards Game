@@ -1,0 +1,72 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        Map<Integer, Character> dict = new HashMap<>();
+        dict.put(1, 's');
+        dict.put(2, 'h');
+        dict.put(3, 'k');
+        dict.put(4, 'd');
+        dict.put(5, 'k');
+        dict.put(6, 'd');
+
+         
+        int result = find(dict);
+        System.out.println(result);
+    }
+
+    public static int find(Map<Integer, Character> dict) {
+     
+        int s = 0, h = 0, k = 0, d = 0;
+        int t = 0;
+
+        
+        for (Map.Entry<Integer, Character> entry : dict.entrySet()) {
+            if (entry.getValue() == 's') {
+                s++;
+            }
+            if (entry.getValue() == 'k') {
+                k++;
+            }
+            if (entry.getValue() == 'd') {
+                d++;
+            }
+            if (entry.getValue() == 'h') {
+                h++;
+            }
+        }
+
+        int resS = s / 13, resK = k / 13, resD = d / 13, resH = h / 13;
+        int[] results = {resS, resK, resD, resH};
+
+        int count = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j =  1; j < 4; j++) {
+                if (results[i] == results[j]) {
+                    count++;
+                }
+                if (count == 13) {
+                    return 1;
+                } else if (count > 0 && count < 3) {
+                    results[t] = results[j];
+                    t++;
+                }
+            }
+        }
+
+        int min = results[0];
+        for (int i = 1; i < results.length; i++) {
+            if (results[i] < min) {
+                min = results[i];
+            }
+        }
+
+        if (min > 0) {
+            return min;
+        } else {
+            return 0;
+        }
+    }
+}
