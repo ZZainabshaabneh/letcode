@@ -1,0 +1,33 @@
+class Solution {
+    public int numSquares(int n) {
+        int count = 0;
+        int res = 0;
+        if (n == 1 || n == 4 || n == 16 || n == 25 || n == 36 || n == 49 || n == 64 || n == 81 || n == 100) return 1;
+        if (n > 4 && n % 2 == 0) {
+            int sum = ((n / 2) - 2);
+            while (n > 0) {
+                n = n - sum;
+                count++;
+            }
+            return count;
+        }
+        if (n > 4 && n % 2 != 0) {
+            int sum = ((n / 2) - 1);
+            while (n > 0) {
+                n = n - sum;
+                count++;
+            }
+            return count-1;
+        }
+        else if (n < 4 && n % 2 == 0) {
+            return 2;
+        }
+        else if (n < 4 && n % 2 != 0) {
+            return 3;
+        }
+        
+         return res;
+    }
+}
+
+    
