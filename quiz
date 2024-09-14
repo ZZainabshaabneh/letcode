@@ -1,0 +1,72 @@
+let ironMan = { name: "Tony Stark", suit: "Mark L" };
+function upgradeSuit(hero) {
+hero.suit = "Mark L V";
+hero = { name: "Steve Rogers", suit: "Mark L" };
+}
+upgradeSuit(ironMan);
+
+console.log(ironMan.suit);//Mark L
+
+let thor = { name: "Thor", power: "Thunder" };
+function alterThor(thorObject) {
+thorObject = { name: "Loki", power: "Magic" };
+thorObject.power = "Lightning";
+}
+alterThor(thor);
+console.log(thor.power);//Thunder
+
+function displayName() {
+console.log(this.name);
+}
+const captainMarvel = { name: "Carol Danvers", showName: displayName };
+const blackWidow = { name: "Natasha Romanoff", showName:
+captainMarvel.showName };
+blackWidow.showName();//undefined
+captainMarvel.showName();//Carol Danvers
+const hulk = {
+name: "Bruce Banner",
+transform() {
+console.log(`${this.name} transforms into Hulk!`);
+return this;
+},
+punch() {
+console.log("Hulk smash!");
+return this;
+}
+};
+hulk.transform().punch();//undefined
+function describeHero(power, weapon) {
+console.log(`${this.name} has the power of ${power} and wields a ${weapon}`);
+}
+const ironManDetails = { name: 'Tony Stark' };
+
+const boundDescribe = describeHero.bind(ironManDetails);
+boundDescribe('Tech Genius', 'Repulsor Ray');
+describeHero.call(ironManDetails, 'Tech Genius', 'Repulsor Ray');//Tony has the power of Tech Genius and wields a Repulsor Ray
+describeHero.apply(ironManDetails, ['Tech Genius', 'Repulsor Ray']);
+//Tony has the power of Tech Genius and wields a Repulsor Ray
+const avengers = {
+team: {
+leader: {
+name: "Captain America",
+shield: { material: "Vibranium", condition: "Excellent" }
+}
+}
+};
+const { team: { leader: { name, shield: { material = "Unknown" } } } } = avengers;
+console.log(name);//{ material = "Unknown" }
+console.log(material);//Unknown
+console.log(avengers.team?.leader?.shield?.condition);//name: "Captain America" ,  { material: "Vibranium", condition: "Excellent" }, Excellent
+console.log(avengers.team?.member?.name);//Captain America
+const loki = {
+name: "Loki",
+abilities: { magic: true, shapeshifting: false }
+};
+function showAbilities({
+name = "Unknown",
+abilities: { magic = false, shapeshifting = false } = {}
+}) {
+console.log(`${name} has magic: ${magic}, shapeshifting: ${shapeshifting}`);
+}
+showAbilities(loki);//name: "Loki",abilities: { magic: true,shapeshifting: false
+showAbilities(null);//name = "Unknown",abilities: { magic = false, shapeshifting = false
